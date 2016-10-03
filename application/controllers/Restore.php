@@ -120,7 +120,8 @@
             else
             {
               $this->restore_model->update($data['fc_login'],$this->input->post('password'));
-              echo '<script>window.location.href ="/"</script>';
+              //echo '<script>window.location.href ="/"</script>';
+              redirect('/', 'refresh');
             }
           }
           else

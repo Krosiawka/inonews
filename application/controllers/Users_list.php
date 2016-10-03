@@ -26,7 +26,8 @@
                 $this->load->view('templates/footer');
             }
             else
-                echo '<script>window.location.href ="/"</script>';
+                //echo '<script>window.location.href ="/"</script>';
+                redirect('/', 'refresh');
             
         }
 

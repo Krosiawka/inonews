@@ -17,7 +17,8 @@
             {
                 $id_article = $this->comments_model->delete($id_comment, $data);
                 $url = base_url().'index.php/article/'.$id_article;
-                echo '<script>window.location.href ="'.$url.'"</script>';
+                //echo '<script>window.location.href ="'.$url.'"</script>';
+                redirect($url, 'refresh');
             }
         }
 
@@ -29,6 +30,7 @@
                 $id_article = $this->comments_model->update($id_comment, $data);
                 $url = base_url().'index.php/article/'.$id_article;
                 echo '<script>window.location.href ="'.$url.'"</script>';
+                //redirect($url, 'refresh');
             }
         }
 

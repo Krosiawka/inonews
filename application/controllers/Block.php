@@ -19,10 +19,12 @@
                 $this->block_model->block($id, $block);
 
                 $url = base_url().'index.php/users_list';
-                echo '<script>window.location.href ="'.$url.'"</script>';
+                //echo '<script>window.location.href ="'.$url.'"</script>';
+                redirect($url, 'refresh');
             }
 
-            echo '<script>window.location.href ="/"</script>';
+            //echo '<script>window.location.href ="/"</script>';
+            redirect('/', 'refresh');
 
         }
     }

@@ -126,6 +126,7 @@
 		        {
 		        	$this->registry_model->index();
 		        	echo '<script>window.location.href ="/"</script>';
+		        	//redirect('/', 'refresh');
 		        }
 			}
 			else

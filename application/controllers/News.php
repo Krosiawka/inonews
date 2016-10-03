@@ -101,7 +101,8 @@ ob_start();
             		{
 	                    $this->comments_model->insert($id_article, $data['id'], $data['login']);
 	                    $url = base_url().'index.php/article/'.$id_article;
-	                    echo '<script>window.location.href ="'.$url.'"</script>';
+	                    //echo '<script>window.location.href ="'.$url.'"</script>';
+	                    redirect($url, 'refresh');
 					}
 					else
             		{
@@ -193,7 +194,8 @@ ob_start();
 					$data = $this->news_model->add_article($data);
 
 					$url = base_url().'index.php/article/'.$data['fk_id'];
-                	echo '<script>window.location.href ="'.$url.'"</script>';
+                	//echo '<script>window.location.href ="'.$url.'"</script>';
+					redirect($url, 'refresh');
 				}
 			}
 			else

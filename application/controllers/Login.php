@@ -9,6 +9,7 @@
 			$this->load->model('news_model');
 			$this->load->model('check_model');
 			//$data = $this->check_model->index();
+            		$this->load->helper('url');
 		}
 
 		public function check_login()
@@ -97,7 +98,8 @@
 				{
 					$this->login_model->index();
 					echo "<script>window.location.href = '/';</script>";
-	       		}
+					//redirect('/', 'refresh');
+				}
        		}
        		else
        		{
@@ -108,7 +110,8 @@
     	public function log_out()
     	{
     		$this->login_model->log_out();
-			echo "<script>window.location.href = '/';</script>";
+			//echo "<script>window.location.href = '/';</script>";
+			redirect('/', 'refresh');
     	}	
     }
 ?>
