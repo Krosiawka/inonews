@@ -36,7 +36,7 @@
               &nbsp;&nbsp;Здравствуйте, <?php echo $login; ?> <a href="<?php echo base_url(); ?>index.php/login/log_out" class="navbar-link">Выйти</a>
             </p>
             <?php endif; ?>
-            <form class="navbar-search pull-right" action="<?php echo base_url(); ?>index.php/search" method="POST">
+            <form class="navbar-search pull-right" action="<?php echo base_url(); ?>index.php/search" method="GET">
               <input type="text" class="search-query" placeholder="Поиск" name="search">
             </form>
             <ul class="nav">

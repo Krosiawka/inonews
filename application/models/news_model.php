@@ -48,14 +48,14 @@
 		}
 
 
-		public function reader_articles($num, $offset, $id = NULL)
+		public function writer_articles($num, $offset, $id = NULL)
 		{
 			$this->db->order_by('fk_id','desc');
 			$query = $this->db->get_where('news', array('fn_iduser' => $id), $num, $offset);
 			return $query->result_array();
 		}
 
-		public function count_articles($id = NULL)
+		public function count_articles($id)
 		{
 			$query = $this->db->get_where('news', array('fn_iduser' => $id));
 			return $query->num_rows();

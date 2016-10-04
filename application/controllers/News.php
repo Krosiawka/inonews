@@ -21,7 +21,7 @@ ob_start();
 			$data['writers'] = $this->writers_model->index();
 			$data['last_article'] = $this->last_article_model->index();
 			//настройки pagination
- 			$config['base_url'] = base_url().'index.php/news/index';
+ 			$config['base_url'] = base_url().'index.php/news';
 			$config['total_rows'] = $this->db->count_all('news'); //всего записей в таблице
 			$config['per_page'] = '10'; //сколько записей на странице
 			$config['full_tag_open'] = '<div class="pagination pagination-centered"><ul>';
@@ -46,7 +46,7 @@ ob_start();
 
 			$this->pagination->initialize($config);
 
-			$data['news'] = $this->news_model->index($config['per_page'],$this->uri->segment(3));			
+			$data['news'] = $this->news_model->index($config['per_page'],$this->uri->segment(2));			
 			//нагружает сервер
 			// foreach ($data['news'] as $key => $news_item)
 			// {
@@ -211,7 +211,7 @@ ob_start();
 					$data['last_article'] = $this->last_article_model->index();
 					$data['count_articles'] = $this->news_model->count_articles($id);
 					//настройка pagination
-	 				$config['base_url'] = base_url().'index.php/reader_articles/'.$id;
+	 				$config['base_url'] = base_url().'index.php/writer_articles/'.$id;
 					$config['total_rows'] = $data['count_articles']; //всего записей в таблице
 					//$config['num_links'] = 0;
 					$config['per_page'] = '10'; //сколько записей на странице
@@ -238,7 +238,7 @@ ob_start();
 
 					$this->pagination->initialize($config);
 
-					$data['news'] = $this->news_model->reader_articles($config['per_page'],$this->uri->segment(3), $id);
+					$data['news'] = $this->news_model->writer_articles($config['per_page'],$this->uri->segment(3), $id);
 					$this->load->view('templates/header',$data);
 					$this->load->view('news/index', $data);
 					$this->load->view('templates/footer');

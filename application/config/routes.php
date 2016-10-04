@@ -56,6 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$route['news'] = 'news';
 //$route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'news';
+$route['news/(:any)'] = 'news/index/$1';
 $route['about'] = 'about';
 $route['article/(:any)'] = 'news/article/$1';
 $route['writer_articles/(:any)'] = 'news/writer_articles/$1';
@@ -63,6 +64,8 @@ $route['writer_articles/(:any)/(:any)'] = 'news/writer_articles/$1/$2';
 $route['restore'] = 'restore/restore';
 $route['new_password/(:any)'] = 'restore/new_password/$1';
 $route['add_article'] = 'news/add_article';
+$route['search/(:any)/(:any)'] = 'search/index/$1/$2';
+
 
 //$route['check_restore'] = 'restore/check_restore';
 
