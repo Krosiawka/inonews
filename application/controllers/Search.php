@@ -14,22 +14,17 @@
         public function index($search = null, $asd = NULL)
         {   
 
-            //$interenc = mb_internal_encoding();mb_internal_encoding();
-            //mb_convert_variables(mb_internal_encoding(), "cp-1251", $search);
             $search = urldecode($search);
             $data = $this->check_model->index();
             if ($this->input->get('search'))
                 $search = $this->input->get('search');
             $data['count'] =($this->search_model->index($search,'',''))->num_rows();;
   
-//echo $search;
-echo ($this->input->get('search'));
             if ($data['count'] > 0)
             {
                     
                     $data['writers'] = $this->writers_model->index();
                     $data['last_article'] = $this->last_article_model->index();
-
                     //настройка pagination
                     $config['base_url'] = base_url().'index.php/search/'.$search;
                     $config['total_rows'] = $data['count']; //всего записей в таблице
@@ -56,11 +51,8 @@ echo ($this->input->get('search'));
                     $config['prev_tag_open'] = '<li>';
                     $config['prev_tag_close'] = '</li>';
                     //$config['uri_segment'] = 3;
-
                     $this->pagination->initialize($config);
-
                     $data['news'] = ($this->search_model->index($search,$config['per_page'],$this->uri->segment(3)))->result_array();
-
                     //print_r($data['news']);
                     $this->load->view('templates/header',$data);
                     $this->load->view('news/index', $data);
@@ -69,8 +61,8 @@ echo ($this->input->get('search'));
             }
             else
             {
-                //echo '<script> alert(\'Ничего не найдено\'); </script>';
-                //echo '<script>window.location.href ="/"</script>';
+                echo '<script> alert(\'Ничего не найдено\'); </script>';
+                echo '<script>window.location.href ="/"</script>';
             //redirect('/', 'refresh');
 
             }
