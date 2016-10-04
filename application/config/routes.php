@@ -65,7 +65,7 @@ $route['restore'] = 'restore/restore';
 $route['new_password/(:any)'] = 'restore/new_password/$1';
 $route['add_article'] = 'news/add_article';
 $route['search/(:any)/(:any)'] = 'search/index/$1/$2';
-
+$route['search/(:any)'] = 'search/index/$1';
 
 //$route['check_restore'] = 'restore/check_restore';
 

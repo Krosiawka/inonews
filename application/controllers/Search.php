@@ -11,18 +11,19 @@
             $this->load->model('last_article_model');
         }
 
-        public function index($search = NULL, $asd = NULL)
+        public function index($search = null, $asd = NULL)
         {   
 
             //$interenc = mb_internal_encoding();mb_internal_encoding();
-            mb_convert_variables(mb_internal_encoding(), "cp-1251", $search);
+            //mb_convert_variables(mb_internal_encoding(), "cp-1251", $search);
+            $search = urldecode($search);
             $data = $this->check_model->index();
             if ($this->input->get('search'))
-                $data['count'] = ($this->search_model->index($this->input->get('search'),'',''))->num_rows();
-            else
-                $data['count'] =($this->search_model->index($search,'',''))->num_rows();;
-echo $search;
-            //echo ($this->input->get('search'));
+                $search = $this->input->get('search');
+            $data['count'] =($this->search_model->index($search,'',''))->num_rows();;
+  
+//echo $search;
+echo ($this->input->get('search'));
             if ($data['count'] > 0)
             {
                     
@@ -30,7 +31,7 @@ echo $search;
                     $data['last_article'] = $this->last_article_model->index();
 
                     //настройка pagination
-                    $config['base_url'] = base_url().'index.php/search/'.$this->input->get('search');
+                    $config['base_url'] = base_url().'index.php/search/'.$search;
                     $config['total_rows'] = $data['count']; //всего записей в таблице
                     //$config['num_links'] = 0;
                     $config['per_page'] = '10'; //сколько записей на странице
@@ -57,10 +58,10 @@ echo $search;
                     //$config['uri_segment'] = 3;
 
                     $this->pagination->initialize($config);
-                    if ($this->input->post('search'))
-                        $data['news'] = ($this->search_model->index($this->input->get('search'),$config['per_page'],$this->uri->segment(3)))->result_array();
-                    else
-                        $data['news'] = ($this->search_model->index($search,$config['per_page'],$this->uri->segment(3)))->result_array();
+
+                    $data['news'] = ($this->search_model->index($search,$config['per_page'],$this->uri->segment(3)))->result_array();
+
+                    //print_r($data['news']);
                     $this->load->view('templates/header',$data);
                     $this->load->view('news/index', $data);
                     $this->load->view('templates/footer');
@@ -68,8 +69,8 @@ echo $search;
             }
             else
             {
-            // echo '<script> alert(\'Ничего не найдено\'); </script>';
-            // echo '<script>window.location.href ="/"</script>';
+                //echo '<script> alert(\'Ничего не найдено\'); </script>';
+                //echo '<script>window.location.href ="/"</script>';
             //redirect('/', 'refresh');
 
             }
